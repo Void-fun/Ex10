@@ -28,18 +28,18 @@ std::string infix2prefix(std::string infix) {
                     prefix = prefix + operand.pop();
                 }
                 operand.pop();
-            }
-        } else {
-            if (priority(i) == 10) {
-                i = i;
-            }
-        } else {
-            if (priority(operand.get()) < priority(i)) {
-                operand.push(i);
             } else {
-                while (priority(operand.get()) >= priority(i)) {
-                    if (operand.isEmpty()) break;
-                    prefix = prefix + operand.pop();
+                if (priority(i) == 10) {
+                    i = i;
+                } else {
+                    if (priority(operand.get()) < priority(i)) {
+                        operand.push(i);
+                    } else {
+                        while (priority(operand.get()) >= priority(i)) {
+                            if (operand.isEmpty()) break;
+                            prefix = prefix + operand.pop();
+                        }
+                    }
                 }
                 operand.push(i);
             }
