@@ -44,6 +44,7 @@ std::string infix2prefix(std::string infix) {
                 }
             }
         }
+    }
     while (!operand.isEmpty())
         prefix = prefix + operand.pop();
     return prefix;
