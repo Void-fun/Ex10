@@ -21,30 +21,29 @@ std::string infix2prefix(std::string infix) {
         } else {
             if ((i == '(') || ((priority(i) != 10) && (operand.isEmpty()))) {
                 operand.push(i);
-            }
-        } else {
-            if (i == ')') {
-                while ((operand.get() != '(') && (!operand.isEmpty())) {
-                    prefix = prefix + operand.pop();
-                }
-                operand.pop();
             } else {
-                if (priority(i) == 10) {
-                    i = i;
+                if (i == ')') {
+                    while ((operand.get() != '(') && (!operand.isEmpty())) {
+                        prefix = prefix + operand.pop();
+                    }
+                    operand.pop();
                 } else {
-                    if (priority(operand.get()) < priority(i)) {
-                        operand.push(i);
+                    if (priority(i) == 10) {
+                        i = i;
                     } else {
-                        while (priority(operand.get()) >= priority(i)) {
-                            if (operand.isEmpty()) break;
-                            prefix = prefix + operand.pop();
+                        if (priority(operand.get()) < priority(i)) {
+                            operand.push(i);
+                        } else {
+                            while (priority(operand.get()) >= priority(i)) {
+                                if (operand.isEmpty()) break;
+                                prefix = prefix + operand.pop();
+                            }
                         }
                     }
-                }
                 operand.push(i);
+                }
             }
         }
-    }
     while (!operand.isEmpty())
         prefix = prefix + operand.pop();
     return prefix;
