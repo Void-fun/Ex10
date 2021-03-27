@@ -18,24 +18,25 @@ std::string infix2prefix(std::string infix) {
     for (char i : infix) {
         if (priority(i) == 5) {
             prefix = prefix + i;
-        }
-        else if ((i == '(') || ((priority(i) != 10) && (operand.isEmpty()))) {
-            operand.push(i);
-        }
-        else if (i == ')') {
-            while ((operand.get() != '(') && (!operand.isEmpty())) {
-                prefix = prefix + operand.pop();
-            }
-            operand.pop();
-        }
-        else if (priority(i) == 10) {
-            i = i;
-        }
-        else {
-            if (priority(operand.get()) < priority(i)) {
+        } else {
+            if ((i == '(') || ((priority(i) != 10) && (operand.isEmpty()))) {
                 operand.push(i);
             }
-            else {
+        } else {
+            if (i == ')') {
+                while ((operand.get() != '(') && (!operand.isEmpty())) {
+                    prefix = prefix + operand.pop();
+                }
+                operand.pop();
+            }
+        } else {
+            if (priority(i) == 10) {
+                i = i;
+            }
+        } else {
+            if (priority(operand.get()) < priority(i)) {
+                operand.push(i);
+            } else {
                 while (priority(operand.get()) >= priority(i)) {
                     if (operand.isEmpty()) break;
                     prefix = prefix + operand.pop();

@@ -28,17 +28,18 @@ class MyStack {
         delete[] this->stack;
     }
     T get() const {
-        if (!isEmpty()) 
+        if (!isEmpty())
             return this->stack[size - 1];
-        else 
+        else
             return -1;
     }
     T pop() {
         if (!isEmpty()) {
             this->size--;
             return this->stack[size];
-        } else 
+        } else {
             return -1;
+        }
     }
     T push(T element) {
         if (!isFull()) {
@@ -60,4 +61,4 @@ class MyStack {
             return false;
     }
 };
-#endif // !MYSTACK_H
+#endif  // !MYSTACK_H

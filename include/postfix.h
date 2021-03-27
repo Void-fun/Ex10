@@ -6,8 +6,7 @@
 #include <string>
 #define CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include <string>
 
 std::string infix2prefix(std::string infix);
 
-#endif // !POSTFIX_H
+#endif  // !POSTFIX_H
